@@ -59,35 +59,20 @@ title: {
   text: 'Cours du navet par joueur'
 },
 
-subtitle: {
-  text: 'Source: thesolarfoundation.com'
-},
-
 yAxis: {
   title: {
-    text: 'Number of Employees'
+    text: 'Prix du navet'
   }
 },
 
 xAxis: {
-  accessibility: {
-    rangeDescription: 'Range: 2010 to 2017'
-  }
+    categories: ['Apples', 'Bananas', 'Oranges']
 },
 
 legend: {
   layout: 'vertical',
   align: 'right',
   verticalAlign: 'middle'
-},
-
-plotOptions: {
-  series: {
-    label: {
-      connectorAllowed: false
-    },
-    pointStart: 2010
-  }
 },
 
 series: [{
