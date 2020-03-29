@@ -29,8 +29,7 @@
       <option>Mickle</option>
       <option>Pimrov</option>
       <option>Roidafou</option>
-      <option>Sarah</option>
-    </select>
+</select>
 </div>
 <div class="form-group">
     <label for="price">Prix : </label>
@@ -82,7 +81,7 @@ series: [
     <?php
     include 'class/Navet.php';
     $navet = new Navet();
-    $pseudos = ['Nicoulou', 'Roidafou', 'Pimrov'];
+    $pseudos = ['Nicoulou', 'Roidafou', 'Pimrov', 'Mickle'];
     foreach ($pseudos as $pseudo){
         $prices = $navet->generateGraph($pseudo);
         echo "{
