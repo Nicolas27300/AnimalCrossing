@@ -29,7 +29,11 @@ class Navet {
         $datas = $rep->FetchAll();
         $prices = "[";
         foreach ($datas as $data){
-            $prices .= $data['price'].',';
+            if ($data['price'] != 0){
+                $prices .= $data['price'].',';
+            } else {
+                $prices .= 'null,';
+            }
         }
         $prices .= "]";
         return $prices;
