@@ -12,7 +12,14 @@ class Navet {
     }
 
     public function addCours($pseudo, $price, $morning){
-        $sql = "INSERT INTO navets (pseudo, price, morning, date) VALUES ('$pseudo', '$price', '$morning', NOW())";
+        $date = new DateTime();
+        if ($morning){
+            $date = $date->setTime(8, 0, 0);
+        } else {
+            $date = $date->setTime(12, 0, 0);
+        }
+        $date = $date->format('Y-m-d H:i:s');
+        $sql = "INSERT INTO navets (pseudo, price, morning, date) VALUES ('$pseudo', '$price', '$morning', '$date')";
         $this->db->query($sql);
     }
 
