@@ -67,6 +67,12 @@ title: {
   text: 'Cours du navet par joueur'
 },
 
+plotOptions: {
+    series: {
+        connectNulls : true,
+    },
+},
+
 yAxis: {
   title: {
     text: 'Prix du navet'
