@@ -16,6 +16,9 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </header>
 <body>
+<?php
+include 'inc/nav.php';
+?>
 <div class="section">
 <div class="row">
 <div class="col-md-5"></div>
@@ -51,7 +54,14 @@
 <div class="row">
 <div class="col-md-12">
 <figure class="highcharts-figure">
-    <div id="container"></div>
+    <div id="graphweek"></div>
+</figure>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<figure class="highcharts-figure">
+    <div id="graphall"></div>
 </figure>
 </div>
 </div>
@@ -59,7 +69,7 @@
 
 
 <script type="text/javascript">
-Highcharts.chart('container', {
+Highcharts.chart('graphall', {
 
 title: {
   text: 'Cours du navet par joueur'
@@ -89,7 +99,7 @@ series: [
     $navet = new Navet();
     $pseudos = ['Nicoulou', 'Roidafou', 'Mickle', 'SarouChan'];
     foreach ($pseudos as $pseudo){
-        $prices = $navet->generateGraph($pseudo);
+        $prices = $navet->generateGraphAll($pseudo);
         echo "{
             name: '$pseudo',
             data: $prices
@@ -101,7 +111,70 @@ series: [
 xAxis: {
     <?php
     $navet = new Navet();
-    $categories = $navet->generateXAyis();
+    $categories = $navet->generateXAyisAll();
+    echo "categories: $categories";
+    ?>
+},
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        layout: 'horizontal',
+        align: 'center',
+        verticalAlign: 'bottom'
+      }
+    }
+  }]
+}
+
+});
+
+Highcharts.chart('graphweek', {
+
+title: {
+  text: 'Cours du navet par joueur sur la semaine'
+},
+
+plotOptions: {
+    series: {
+        connectNulls : true,
+    },
+},
+
+yAxis: {
+  title: {
+    text: 'Prix du navet'
+  }
+},
+
+legend: {
+  layout: 'vertical',
+  align: 'right',
+  verticalAlign: 'middle'
+},
+
+series: [
+    <?php
+    $navet = new Navet();
+    $pseudos = ['Nicoulou', 'Roidafou', 'Mickle', 'SarouChan'];
+    foreach ($pseudos as $pseudo){
+        $prices = $navet->generateGraphWeek($pseudo);
+        echo "{
+            name: '$pseudo',
+            data: $prices
+          },";
+    }
+    ?>
+ ],
+
+xAxis: {
+    <?php
+    $navet = new Navet();
+    $categories = $navet->generateXAyisWeek();
     echo "categories: $categories";
     ?>
 },
